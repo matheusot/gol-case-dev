@@ -12,7 +12,7 @@ def generate_mercados_sql(mercados):
     table = 'mercados'
     with open(filename, 'w') as f:
         for i, mercado in enumerate(mercados):
-            f.write(f"INSERT INTO {table} ('{"', '".join(columns)}') VALUES ({i+1}, '{mercado}');\n")
+            f.write(f"""INSERT INTO {table} (`{"`, `".join(columns)}`) VALUES ({i+1}, "{mercado}");\n""")
 
 # Generate voos Insert SQL Queries
 def generate_voos_sql(df, mercado_mapping):
@@ -29,7 +29,7 @@ def generate_voos_sql(df, mercado_mapping):
                 'NULL' if pd.isna(row['RPK']) else str(row['RPK'])
             ]
             f.write(
-                f"INSERT INTO {table} ('{"', '".join(columns)}') VALUES ({', '.join(values)});\n"
+                f"""INSERT INTO {table} (`{"`, `".join(columns)}`) VALUES ({", ".join(values)});\n"""
             )
 
 generate_mercados_sql(mercados_data)
