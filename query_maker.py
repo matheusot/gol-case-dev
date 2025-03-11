@@ -3,16 +3,16 @@ import pandas as pd
 data = pd.read_csv('Dados_Estatisticos_Filtered.csv')
 
 mercados_data = sorted(data['MERCADO'].str.strip().unique())
-mercados_dict = {mercado: i for i, mercado in enumerate(mercados_data)}
+mercados_dict = {mercado: i+1 for i, mercado in enumerate(mercados_data)}
 
 # Generate mercados Insert SQL Queries
 def generate_mercados_sql(mercados):
     filename = 'mercados.sql'
-    columns = ['mercado']
+    columns = ['id', 'mercado']
     table = 'mercados'
     with open(filename, 'w') as f:
-        for mercado in mercados:
-            f.write(f"INSERT INTO {table} ('{"', '".join(columns)}') VALUES ('{mercado}');\n")
+        for i, mercado in enumerate(mercados):
+            f.write(f"INSERT INTO {table} ('{"', '".join(columns)}') VALUES ({i+1}, '{mercado}');\n")
 
 # Generate voos Insert SQL Queries
 def generate_voos_sql(df, mercado_mapping):
