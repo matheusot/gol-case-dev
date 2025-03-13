@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex flex-col sm:flex-row">
+    <!-- Sidebar -->
+    <div class="bg-gray-200 w-full sm:w-80">
+        <div class="p-4 sidebar-container">
+            <form id="dashboard-form">
+                <div class="mb-4">
+                    <label for="market" class="block text-gray-700">Market*:</label>
+                    <select name="market" id="market" class="border border-gray-300 p-2 w-full rounded"
+                        data-placeholder="Select a Market">
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="start_date" class="block text-gray-700">Start Date:</label>
+                    <div class="flex flex-row">
+                        <input type="number" name="start_year" id="start_year" min="2000" max="2025"
+                            class="border border-gray-300 p-2 w-full w-1/2 mr-1 rounded" placeholder="Year">
+                        <input type="number" name="start_month" id="start_month" min="1" max="12"
+                            class="border border-gray-300 p-2 w-full w-1/2 ml-1 rounded" placeholder="Month">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="end_date" class="block text-gray-700">End Date:</label>
+                    <div class="flex flex-row">
+                        <input type="number" name="end_year" id="end_year" min="2000" max="2025"
+                            class="border border-gray-300 p-2 w-full w-1/2 mr-1 rounded" placeholder="Year">
+                        <input type="number" name="end_month" id="end_month" min="1" max="12"
+                            class="border border-gray-300 p-2 w-full w-1/2 ml-1 rounded" placeholder="Month">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input type="checkbox" name="include_null" id="include_null" class="border border-gray-300 p-2">
+                    <label for="include_null" class="text-gray-700">Include Null Data</label>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- Chart -->
+    <div class="flex-1 p-4 chart-container bg-white w-full rounded p-2 shadow mt-0">
+        <h1 class="text-2xl font-bold text-center mb-4" id="chart_title"></h1>
+        <div id="chart">
+            <div class="text-center p-4">Select a Market to generate the chart</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
